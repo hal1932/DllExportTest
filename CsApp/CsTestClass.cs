@@ -29,14 +29,10 @@ namespace CsApp
         }
 
         ~CsTestClass()
-        {
-            Dispose(false);
-        }
+            => Dispose(false);
 
         public void Dispose()
-        {
-            Dispose(true);
-        }
+            => Dispose(true);
 
         private void Dispose(bool disposing)
         {
@@ -57,14 +53,10 @@ namespace CsApp
         }
 
         public int Func1(int i)
-        {
-            return TestClass_func1(_self, i);
-        }
+            => TestClass_func1(_self, i);
 
         public int Func2(Func<int, int> callback, int i)
-        {
-            return TestClass_func2(_self, new TestClass_func2_Callback(callback), i);
-        }
+            => TestClass_func2(_self, new TestClass_func2_Callback(callback), i);
 
         private bool _disposed;
 
