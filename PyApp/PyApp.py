@@ -9,7 +9,7 @@ dll = ctypes.CDLL('CppDll.dll')
 
 class PyTestClass(object):
 
-    func2_callback = ctypes.CFUNCTYPE(ctypes.c_int, ctypes.c_int)
+    func2_callback = ctypes.PYFUNCTYPE(ctypes.c_int, ctypes.c_int)
 
     def __init__(self):
         self.__instance = dll.TestClass_New()
