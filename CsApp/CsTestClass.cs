@@ -23,8 +23,23 @@ namespace CsApp
         [DllImport("CppDll.dll")]
         static extern int TestClass_func2(IntPtr self, TestClass_func2_Callback callback, int i);
 
+        [DllImport("CppDll.dll")]
+        static extern void test(IntPtr dst, int size, int offset);
+
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        struct Test
+        {
+            public int A;
+            public int B;
+        }
+
         public CsTestClass()
         {
+            var dstBuffer = Marshal.AllocHGlobal(Marshal.SizeOf<Test>());
+            test(dstBuffer, Marshal.SizeOf<Test>(), 0);
+            var obj = Marshal.PtrToStructure<Test>(dstBuffer);
+            Marshal.FreeHGlobal(dstBuffer);
+
             _self = TestClass_New();
         }
 
